@@ -9,6 +9,7 @@ const mongoose = require("./mongoose/mongodb")
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const auth = require("./routes/auth")
 
 // error handler
 onerror(app)
@@ -38,6 +39,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(auth.routes(), auth.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
