@@ -30,12 +30,12 @@ const authorSchema = new mongoose.Schema({
   // 创建时间
   createdTime: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   // 最后的登录时间
   lastOnlineTime: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   }
 })
 

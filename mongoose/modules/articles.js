@@ -82,12 +82,12 @@ const articleSchema = new mongoose.Schema({
   // 创建时间
   createdTime: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   // 修改时间
   modifiedTime: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   },
   // 发布时间
   publishTime: {
