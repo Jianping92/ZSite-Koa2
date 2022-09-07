@@ -24,7 +24,10 @@ const authorSchema = new mongoose.Schema({
     trim: true
   },
   // 用户性别 0男性，1女性
-  sex: Number,
+  sex: {
+    type: Number,
+    enum: [0, 1]
+  },
   // 邮箱
   email: String,
   // 创建时间

@@ -46,7 +46,8 @@ const articleSchema = new mongoose.Schema({
     // 原创
     original: {
       type: String,
-      default: "original"
+      default: "original",
+      enum: ["original", "reprint"]
     },
     // 文章类别
     category: {
@@ -56,7 +57,8 @@ const articleSchema = new mongoose.Schema({
     // 封面模式
     coverImgPattern: {
       type: String,
-      default: "default1"
+      default: "default1",
+      enum: ["default1", "default2", "default3", "default4", "customize"]
     },
     // 封面图1:1
     coverImg1x1: {
@@ -76,7 +78,8 @@ const articleSchema = new mongoose.Schema({
     // 可见范围
     readScope: {
       type: String,
-      default: "公开"
+      default: "公开",
+      enum: ["公开", "私有"]
     }
   },
   // 创建时间
