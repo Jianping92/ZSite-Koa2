@@ -4,11 +4,12 @@
 const getDbKey = {
   "allOf": "$all",
   "anyOf": "$or",
-  "LK": "$in",
   "IN": "$in",
   "NIN": "$nin",
   "EQ": "$eq",
-  "NE": "$ne"
+  "NE": "$ne",
+  "start": "$gte",
+  "end": "$lte"
 }
 
 /**
@@ -64,15 +65,18 @@ const getDbQueryCommand2 = group => {
   }
   let objArray = Object.entries(group);
   objArray = objArray.map(item => {
-    const value = Object.entries(item[1])[0];
-    if (getDbKey[value[0]]) {
-      item[1] = {}
-      item[1][getDbKey[value[0]]] = value[1];
-    }
+    let values = Object.entries(item[1]);
+    values = values.map(item => {
+      let newItem = {};
+      if (getDbKey[item[0]]) {
+        newItem[getDbKey[item[0]]] = item[1];
+      }
+      return newItem;
+    })
     let newItem = {};
-    newItem[item[0]] = item[1];
-    return newItem;
-  })
+    newItem[item[0]] = Object.assign({}, ...values);
+    return values.length ? newItem : null;
+  }).filter(Boolean);
   return objArray.length ? Object.assign({}, ...objArray) : {};
 }
 
